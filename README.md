@@ -1,1 +1,1 @@
-This repository contains all the frontend projects
+This repository contains all the frontend projects.

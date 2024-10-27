@@ -50,7 +50,7 @@ function productGridGenerator() {
 
             <div class="product-spacer"></div>
 
-            <div class="added-to-cart">
+            <div class="added-to-cart js-added-popup-${product.id}">
                 <img src="images/icons/checkmark.png">
                 Added
             </div>
@@ -100,6 +100,13 @@ function addToCartInteractive() {
                 }
 
 
+
+                let addedPopup = document.querySelector(`.js-added-popup-${productId}`);
+                addedPopup.classList.add('added-to-cart-visible');
+                
+                setInterval(() => {
+                    addedPopup.classList.remove('added-to-cart-visible');
+                }, 2000);
 
 
                 let cartQuantity = 0;

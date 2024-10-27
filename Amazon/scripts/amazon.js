@@ -1,5 +1,6 @@
 
 productGridGenerator();
+addToCartInteractive();
 
 
 
@@ -54,7 +55,7 @@ function productGridGenerator() {
                 Added
             </div>
 
-            <button class="add-to-cart-button button-primary">
+            <button class="add-to-cart-button button-primary js-add-to-cart-button" data-product-id="${product.id}">
                 Add to Cart
             </button>
             </div>
@@ -65,3 +66,36 @@ function productGridGenerator() {
     document.querySelector('.products-grid')
         .innerHTML = productGridHTML;
 }
+
+
+
+function addToCartInteractive() {
+
+    document.querySelectorAll('.js-add-to-cart-button')
+        .forEach((button) => {
+
+            button.addEventListener('click', () => {
+
+                let productId = button.dataset.productId;
+
+                let matchingItem;
+
+                cart.forEach((item) => {
+                    if(productId === item.productId) {
+                        matchingItem = item;
+                    }
+                });
+
+                if(matchingItem) {
+                    matchingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        productId: productId,
+                        quantity: 1
+                    });
+                }
+                
+            });
+        });
+}
+

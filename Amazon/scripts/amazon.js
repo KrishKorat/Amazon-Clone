@@ -112,8 +112,3 @@ function addToCartInteractive() {
             });
         });
 }
-
-function quantitySelectorDropDown() {
-
-    
-}

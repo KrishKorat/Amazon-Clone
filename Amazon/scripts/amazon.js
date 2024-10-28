@@ -70,6 +70,7 @@ function productGridGenerator() {
 
 
 function addToCartInteractive() {
+    let addTimeoutMSG = {};
 
     document.querySelectorAll('.js-add-to-cart-button')
         .forEach((button) => {
@@ -103,10 +104,18 @@ function addToCartInteractive() {
 
                 let addedPopup = document.querySelector(`.js-added-popup-${productId}`);
                 addedPopup.classList.add('added-to-cart-visible');
+
+                let isPreviousTimeoutOn = addTimeoutMSG[productId];
+                if(isPreviousTimeoutOn) {
+                    clearTimeout(isPreviousTimeoutOn);
+                }
                 
-                setInterval(() => {
+                let timoutId = setTimeout(() => {
                     addedPopup.classList.remove('added-to-cart-visible');
                 }, 2000);
+
+                addTimeoutMSG[productId] = timoutId;
+
 
 
                 let cartQuantity = 0;

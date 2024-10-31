@@ -54,8 +54,8 @@ function generateOrderSummary() {
                 </div>
 
                 <div class="delivery-option">
-                  <input type="radio" class="delivery-option-input"
-                    name="delivery-option-2">
+                  <input type="radio" checked class="delivery-option-input"
+                    name="delivery-option-${matchingItem.id}">
                   <div>
                     <div class="delivery-option-date">
                       Tuesday, June 21
@@ -66,8 +66,8 @@ function generateOrderSummary() {
                   </div>
                 </div>
                 <div class="delivery-option">
-                  <input type="radio" checked class="delivery-option-input"
-                    name="delivery-option-2">
+                  <input type="radio" class="delivery-option-input"
+                    name="delivery-option-${matchingItem.id}">
                   <div>
                     <div class="delivery-option-date">
                       Wednesday, June 15
@@ -79,7 +79,7 @@ function generateOrderSummary() {
                 </div>
                 <div class="delivery-option">
                   <input type="radio" class="delivery-option-input"
-                    name="delivery-option-2">
+                    name="delivery-option-${matchingItem.id}">
                   <div>
                     <div class="delivery-option-date">
                       Monday, June 13

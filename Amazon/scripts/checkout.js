@@ -4,6 +4,7 @@ import {formatCurrency} from './utils/money.js';
 
 generateOrderSummary();
 makeUseDeleteLink();
+updateCheckoutCount();
 
 function generateOrderSummary() {
     let orderSummaryHTML = '';
@@ -109,9 +110,20 @@ function makeUseDeleteLink() {
 
         let productId = link.dataset.productId;
         removeFromCart(productId);
+        updateCheckoutCount();
         
         let removableContainder = document.querySelector(`.js-cart-item-container-${productId}`);
         removableContainder.remove();
       });
     });
+}
+
+function updateCheckoutCount() {
+  let cartQuantity = 0;
+
+    cart.forEach((item) => {
+        cartQuantity += item.quantity;
+    });
+    document.querySelector('.js-item-count')
+        .innerHTML = `${cartQuantity} items`;
 }

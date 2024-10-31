@@ -7,6 +7,7 @@ addToCartInteractive();
 function productGridGenerator() {
     let productGridHTML = '';
 
+    // Connects to product.js >>> products named array
     products.forEach((product) => {
         
         productGridHTML += `
@@ -68,32 +69,37 @@ function productGridGenerator() {
 }
 
 
-
+// Contains all the things when we click 'add to cart' button
 function addToCartInteractive() {
-    let addTimeoutMSG = {};
+    
+    let addTimeoutMSG = {}; // Contains the active id if popup is running, not then null
 
+    // Makes all the button functionable separately 
     document.querySelectorAll('.js-add-to-cart-button')
         .forEach((button) => {
 
+            // Adds functionality when we click button
             button.addEventListener('click', () => {
 
                 let productId = button.dataset.productId;
 
+                // Gets total value from drop down box
                 let selectElem = document.querySelector(`.js-quantity-selector-${productId}`);
                 let selectVal = selectElem.value;
                 selectVal = Number(selectVal);
 
+                // Check if there is matching value, yes then adds to that
                 let matchingItem;
-
-                cart.forEach((item) => {
+                cart.forEach((item) => {   // Loops through cart array to check
                     if(productId === item.productId) {
-                        matchingItem = item;
+                        matchingItem = item; // item location is saved into matchingItem
                     }
                 });
 
-                if(matchingItem) {
+                if(matchingItem) { 
                     matchingItem.quantity += selectVal;
                 } else {
+                    // Traditionaly adds item like this when they appear first
                     cart.push({
                         productId: productId,
                         quantity: selectVal
@@ -101,23 +107,24 @@ function addToCartInteractive() {
                 }
 
 
-
+                // Adds green popup message
                 let addedPopup = document.querySelector(`.js-added-popup-${productId}`);
                 addedPopup.classList.add('added-to-cart-visible');
 
+                    //  Catches if any product has popup on during clicking button
                 let isPreviousTimeoutOn = addTimeoutMSG[productId];
                 if(isPreviousTimeoutOn) {
                     clearTimeout(isPreviousTimeoutOn);
                 }
                 
-                let timoutId = setTimeout(() => {
+                let timoutId = setTimeout(() => { // removes the added class after 2 sec
                     addedPopup.classList.remove('added-to-cart-visible');
                 }, 2000);
 
-                addTimeoutMSG[productId] = timoutId;
+                addTimeoutMSG[productId] = timoutId; // Adds value to above object while popup is showing, terminaters afterwards
 
 
-
+                // Updates the cart quantity on shoping item each time we add new product
                 let cartQuantity = 0;
 
                 cart.forEach((item) => {

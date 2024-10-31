@@ -1,10 +1,15 @@
-export let cart = [{
+export let cart = JSON.parse(localStorage.getItem('cart')) || [{
     productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
     quantity: 2
 }, {
     productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
     quantity: 1
 }];
+
+
+function saveStorage() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
 
 // Check if there is matching value, yes then adds to that
 export function productAddToCart(productId, selectVal) {
@@ -25,6 +30,8 @@ export function productAddToCart(productId, selectVal) {
             quantity: selectVal
         });
     }
+
+    saveStorage();
 }
 
 
@@ -39,4 +46,6 @@ export function removeFromCart(productId) {
     });
 
     cart = newCart;
+
+    saveStorage();
 }

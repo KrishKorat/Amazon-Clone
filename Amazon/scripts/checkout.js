@@ -1,10 +1,11 @@
-import {cart, removeFromCart} from '../data/cart.js';
+import {cart, removeFromCart, updateQuantity} from '../data/cart.js';
 import {products} from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
 
 generateOrderSummary();
 makeUseDeleteLink();
 makeUseUpdateLink();
+makeUseSaveLink();
 updateCheckoutCount();
 
 function generateOrderSummary() {
@@ -40,13 +41,13 @@ function generateOrderSummary() {
                 </div>
                 <div class="product-quantity">
                   <span>
-                    Quantity: <span class="quantity-label js-quantity-count">${cartItem.quantity}</span>
+                    Quantity: <span class="quantity-label js-quantity-label-${matchingItem.id}">${cartItem.quantity}</span>
                   </span>
                   <span class="update-quantity-link link-primary js-update-link" data-product-id="${matchingItem.id}">
                     Update
                   </span>
-                  <input class="quantity-input">
-                  <span class="save-quantity-link link-primary">Save</span>
+                  <input class="quantity-input js-quantity-input">
+                  <span class="save-quantity-link js-save-link link-primary" data-product-id="${matchingItem.id}">Save</span>
                   <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingItem.id}">
                     Delete
                   </span>
@@ -144,7 +145,35 @@ function makeUseUpdateLink() {
         let container = document.querySelector(`.js-cart-item-container-${productId}`);
         container.classList.add('is-editing-quantity');
 
-        
+      });
+    });
+}
+
+function makeUseSaveLink() {
+  document.querySelectorAll('.js-save-link')
+    .forEach((link) => {
+
+      link.addEventListener('click', () => {
+
+        let productId = link.dataset.productId;
+
+        let QuanInputElem = document.querySelector('.js-quantity-input');
+        let QuanInputVal = QuanInputElem.value;
+        QuanInputVal = Number(QuanInputVal);
+
+        updateQuantity(productId, QuanInputVal);
+
+        const quantityLabel = document.querySelector(
+          `.js-quantity-label-${productId}`
+        );
+        quantityLabel.innerHTML = QuanInputVal;
+
+        updateCheckoutCount();
+
+
+        let container = document.querySelector(`.js-cart-item-container-${productId}`);
+        container.classList.remove('is-editing-quantity');
+
       });
     });
 }

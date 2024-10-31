@@ -20,7 +20,7 @@ function generateOrderSummary() {
         });
 
         orderSummaryHTML += `
-          <div class="cart-item-container">
+          <div class="cart-item-container js-cart-item-container-${matchingItem.id}">
             <div class="delivery-date">
               Delivery date: Wednesday, June 15
             </div>
@@ -109,7 +109,9 @@ function makeUseDeleteLink() {
 
         let productId = link.dataset.productId;
         removeFromCart(productId);
-        console.log(cart);
+        
+        let removableContainder = document.querySelector(`.js-cart-item-container-${productId}`);
+        removableContainder.remove();
       });
     });
 }

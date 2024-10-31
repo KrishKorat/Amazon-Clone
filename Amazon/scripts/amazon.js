@@ -5,7 +5,7 @@ import {formatCurrency} from './utils/money.js';
 
 productGridGenerator();
 addToCartInteractive(); // Contains all the things when we click 'add to cart' button
-
+updateCartQuantity();
 
 
 function productGridGenerator() {

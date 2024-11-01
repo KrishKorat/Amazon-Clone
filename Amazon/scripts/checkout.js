@@ -3,10 +3,11 @@ import {products} from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
 
 generateOrderSummary();
+updateCheckoutCount();
 makeUseDeleteLink();
 makeUseUpdateLink();
 makeUseSaveLink();
-updateCheckoutCount();
+
 
 function generateOrderSummary() {
     let orderSummaryHTML = '';
@@ -16,6 +17,7 @@ function generateOrderSummary() {
         let productId = cartItem.productId;
 
         let matchingItem;
+        // Accessing all info. from products arr of an item using cart arr
         products.forEach((product) => {
             if(product.id === productId) {
                 matchingItem = product;
@@ -105,23 +107,7 @@ function generateOrderSummary() {
 }
 
 
-
-function makeUseDeleteLink() {
-  document.querySelectorAll('.js-delete-link')
-    .forEach((link) => {
-
-      link.addEventListener('click', () => {
-
-        let productId = link.dataset.productId;
-        removeFromCart(productId);
-        updateCheckoutCount();
-        
-        let removableContainder = document.querySelector(`.js-cart-item-container-${productId}`);
-        removableContainder.remove();
-      });
-    });
-}
-
+// Updates checkout count each time changes happens 
 function updateCheckoutCount() {
   let cartQuantity = 0;
 
@@ -133,15 +119,37 @@ function updateCheckoutCount() {
 }
 
 
-function makeUseUpdateLink() {
-
-  document.querySelectorAll('.js-update-link')
+// Makes delete link useful in checkout page
+function makeUseDeleteLink() {
+  document.querySelectorAll('.js-delete-link')
     .forEach((link) => {
 
       link.addEventListener('click', () => {
 
         let productId = link.dataset.productId;
 
+        // Removes item from the cart (only as data)
+        removeFromCart(productId);
+
+        updateCheckoutCount();
+        
+        // Removes html of removed item 
+        let removableContainder = document.querySelector(`.js-cart-item-container-${productId}`);
+        removableContainder.remove();
+      });
+    });
+}
+
+// Makes update link useful in checkout page
+function makeUseUpdateLink() {
+
+  document.querySelectorAll('.js-update-link')
+    .forEach((link) => {
+      link.addEventListener('click', () => {
+
+        let productId = link.dataset.productId;
+
+        // Makes input-bar and save visible
         let container = document.querySelector(`.js-cart-item-container-${productId}`);
         container.classList.add('is-editing-quantity');
 
@@ -150,19 +158,22 @@ function makeUseUpdateLink() {
 }
 
 function makeUseSaveLink() {
+
   document.querySelectorAll('.js-save-link')
     .forEach((link) => {
-
       link.addEventListener('click', () => {
 
         let productId = link.dataset.productId;
 
+        // Extract quantity number from input bar
         let QuanInputElem = document.querySelector('.js-quantity-input');
         let QuanInputVal = QuanInputElem.value;
         QuanInputVal = Number(QuanInputVal);
 
+        // Update the quantity in the cart arr as data
         updateQuantity(productId, QuanInputVal);
 
+        // Update the html of quantity
         const quantityLabel = document.querySelector(
           `.js-quantity-label-${productId}`
         );
@@ -170,7 +181,7 @@ function makeUseSaveLink() {
 
         updateCheckoutCount();
 
-
+        // Normalize by making update link visible 
         let container = document.querySelector(`.js-cart-item-container-${productId}`);
         container.classList.remove('is-editing-quantity');
 

@@ -1,12 +1,8 @@
-export let cart = JSON.parse(localStorage.getItem('cart')) || [{
-    productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
-    quantity: 2
-}, {
-    productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
-    quantity: 1
-}];
+export let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 
+
+// Saves cart items everytime any changes happens
 function saveStorage() {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
@@ -34,7 +30,7 @@ export function productAddToCart(productId, selectVal) {
     saveStorage();
 }
 
-
+// Executes when delete link is clicked in checkout page
 export function removeFromCart(productId) {
     let newCart = [];
 
@@ -50,13 +46,13 @@ export function removeFromCart(productId) {
     saveStorage();
 }
 
-
+// executes when we change quantity via update link in checkout page
 export function updateQuantity(productId, newQuantity) {
 
     cart.forEach((cartItem) => {
-
+        // Searches item to change
         if(cartItem.productId === productId) {
-            cartItem.quantity = newQuantity;
+            cartItem.quantity = newQuantity; // Changes to new quantity
         }
     });
 

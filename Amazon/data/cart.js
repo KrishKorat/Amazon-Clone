@@ -20,7 +20,7 @@ export function productAddToCart(productId, selectVal) {
     if(matchingItem) { 
         matchingItem.quantity += selectVal;
     } else {
-        // Traditionaly adds item like this when they appear first
+        // Traditionaly adds item like this when they appear first time
         cart.push({
             productId: productId,
             quantity: selectVal

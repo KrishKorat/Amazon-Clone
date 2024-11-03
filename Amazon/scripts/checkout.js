@@ -173,7 +173,7 @@ function makeUseSaveLink() {
         // Update the quantity in the cart arr as data
         updateQuantity(productId, QuanInputVal);
 
-        // Update the html of quantity
+        // Update the html of quantity number in checkout-box
         const quantityLabel = document.querySelector(
           `.js-quantity-label-${productId}`
         );

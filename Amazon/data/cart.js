@@ -1,4 +1,13 @@
-export let cart = JSON.parse(localStorage.getItem('cart')) || [];
+export let cart = JSON.parse(localStorage.getItem('cart')) || [
+{
+    productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
+    quantity: 2,
+    deliveryId: '1'
+}, {
+    productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
+    quantity: 1,
+    deliveryId: '2'
+}];
 
 
 
@@ -23,7 +32,8 @@ export function productAddToCart(productId, selectVal) {
         // Traditionaly adds item like this when they appear first time
         cart.push({
             productId: productId,
-            quantity: selectVal
+            quantity: selectVal,
+            deliveryId: 1 // By default shipping will be free
         });
     }
 

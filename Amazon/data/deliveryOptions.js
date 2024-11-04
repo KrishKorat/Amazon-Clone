@@ -1,4 +1,4 @@
-let deliveryOptions = [{
+export let deliveryOptions = [{
     deliveryId: '1',
     deliveryDays: 7,
     deliveyCost: 0

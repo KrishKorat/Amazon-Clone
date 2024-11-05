@@ -4,6 +4,8 @@ import {formatCurrency} from './utils/money.js';
 import { deliveryOptions } from '../data/deliveryOptions.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
+renderSummaryOrder();
+
 generateOrderSummary();
 updateCheckoutCount();
 makeUseDeleteLink();
@@ -11,6 +13,15 @@ makeUseUpdateLink();
 makeUseSaveLink();
 updateDeliveyId();
 
+
+function renderSummaryOrder() {
+  generateOrderSummary();
+  updateCheckoutCount();
+  makeUseDeleteLink();
+  makeUseUpdateLink();
+  makeUseSaveLink();
+  updateDeliveyId();
+}
 
 function generateOrderSummary() {
     let orderSummaryHTML = '';
@@ -140,6 +151,7 @@ function updateDeliveyId() {
         let deliveryId = element.dataset.deliveryId;
 
         updateDeliveyOption(productId, deliveryId);
+        renderSummaryOrder();
       });
     });
 }

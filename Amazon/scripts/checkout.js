@@ -9,6 +9,7 @@ updateCheckoutCount();
 makeUseDeleteLink();
 makeUseUpdateLink();
 makeUseSaveLink();
+updateDeliveyId();
 
 
 function generateOrderSummary() {
@@ -106,8 +107,8 @@ function deliveryOptionsHTML(matchingItem, cartItem) {
     const isChecked = deliveryOption.deliveryId === cartItem.deliveryId;
 
     html += `
-      <div class="delivery-option js-delivery-option" 
-        data-product-id="${cartItem.productId}"
+      <div class="delivery-option js-delivery-option"
+        data-product-id="${matchingItem.id}"       
         data-delivery-id="${deliveryOption.deliveryId}">
         <input type="radio" class="delivery-option-input"
           ${isChecked ? 'checked' : ''}
@@ -128,12 +129,12 @@ function deliveryOptionsHTML(matchingItem, cartItem) {
 }
 
 
-function updateDelivey() {
+function updateDeliveyId() {
 
-  document.querySelectorAll('.js-delivey-option')
+  document.querySelectorAll('.js-delivery-option')
     .forEach((element) => {
 
-      element.addEventListener(() => {
+      element.addEventListener('click', () => {
 
         let productId = element.dataset.productId;
         let deliveryId = element.dataset.deliveryId;

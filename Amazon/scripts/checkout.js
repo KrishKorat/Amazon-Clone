@@ -26,16 +26,16 @@ function generateOrderSummary() {
             }
         });
 
+        // Updating delivery date according to radio boxes
         let cartDeliveryId = cartItem.deliveryId;
-
         let deliveryOption;
 
         deliveryOptions.forEach((delOption) => {
-          if(delOption.deliveryId === cartDeliveryId) {
+          if(delOption.deliveryId === cartDeliveryId) { // Getting delivery info same as cart's delivery id
             deliveryOption = delOption;
           }
         });
-
+        // Getting and Turning date in good format
         const today = dayjs();
         const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
         const dateString = deliveryDate.format('dddd, MMMM D');
@@ -88,19 +88,21 @@ function generateOrderSummary() {
     document.querySelector('.js-order-summary').innerHTML = orderSummaryHTML; 
 }
 
-
+// Generates all radio messages of delivery options
 function deliveryOptionsHTML(matchingItem, cartItem) {
-
   let html = '';
 
+  // Because of this it's generating exact 3 times for each item
   deliveryOptions.forEach((deliveryOption) => {
 
+    // Getting date for all radio 
     const today = dayjs();
     const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
     const dateString = deliveryDate.format('dddd, MMMM D');
 
     const priceString = deliveryOption.deliveyCost === 0 ? 'FREE' : `$${formatCurrency(deliveryOption.deliveyCost)} -`;
 
+    // If cartItem's id matches with delivery cart's id then check that 
     const isChecked = deliveryOption.deliveryId === cartItem.deliveryId;
 
     html += `
@@ -124,6 +126,7 @@ function deliveryOptionsHTML(matchingItem, cartItem) {
 }
 
 
+
 // Updates checkout count each time changes happens 
 function updateCheckoutCount() {
   let cartQuantity = 0;
@@ -134,6 +137,7 @@ function updateCheckoutCount() {
     document.querySelector('.js-item-count')
         .innerHTML = `${cartQuantity} items`;
 }
+
 
 
 // Makes delete link useful in checkout page
@@ -173,7 +177,7 @@ function makeUseUpdateLink() {
       });
     });
 }
-
+// Makes save link useful in checkout page
 function makeUseSaveLink() {
 
   document.querySelectorAll('.js-save-link')

@@ -69,7 +69,7 @@ export function updateQuantity(productId, newQuantity) {
     saveStorage();
 }
 
-
+// Updates delivery id in Cart when click other radio buttons
 export function updateDeliveyOption(productId, deliveryId) {
 
     let matchingItem;

@@ -38,7 +38,7 @@ function generateOrderSummary() {
             }
         });
 
-        // Updating delivery date according to radio boxes
+        // Updating delivery date according to radio buttons
         let cartDeliveryId = cartItem.deliveryId;
         let deliveryOption;
 
@@ -139,7 +139,7 @@ function deliveryOptionsHTML(matchingItem, cartItem) {
   return html;
 }
 
-
+// Changes the save of delivey radio button 
 function updateDeliveyId() {
 
   document.querySelectorAll('.js-delivery-option')
@@ -150,8 +150,9 @@ function updateDeliveyId() {
         let productId = element.dataset.productId;
         let deliveryId = element.dataset.deliveryId;
 
-        updateDeliveyOption(productId, deliveryId);
-        renderSummaryOrder();
+        updateDeliveyOption(productId, deliveryId); // in Cart.js
+        
+        renderSummaryOrder(); // To update delivery date without refreshing
       });
     });
 }

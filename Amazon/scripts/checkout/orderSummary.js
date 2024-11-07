@@ -91,7 +91,7 @@ function deliveryOptionsHTML(matchingItem, cartItem) {
     const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
     const dateString = deliveryDate.format('dddd, MMMM D');
 
-    const priceString = deliveryOption.deliveyCost === 0 ? 'FREE' : `$${formatCurrency(deliveryOption.deliveyCost)} -`;
+    const priceString = deliveryOption.deliveryCost === 0 ? 'FREE' : `$${formatCurrency(deliveryOption.deliveryCost)} -`;
 
     // If cartItem's id matches with delivery cart's id then check that 
     const isChecked = deliveryOption.deliveryId === cartItem.deliveryId;

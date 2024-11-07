@@ -6,11 +6,6 @@ import { getDeliveryOption } from '../../data/deliveryOptions.js';
 
 
 export function renderPaymentOrder() {
-  
-  itemCostCount();
-}
-
-function itemCostCount() {
 
   let productPriceCents = 0;
   let shippingPriceCents = 0;
@@ -23,6 +18,10 @@ function itemCostCount() {
     productPriceCents += product.priceCents * cartItem.quantity;
     shippingPriceCents += deliveryOption.deliveryCost;
   });
+
+  const totalBeforeTaxCents = productPriceCents + shippingPriceCents;
+  const taxCents = totalBeforeTaxCents * 0.1;
+  const totalCents = totalBeforeTaxCents + taxCents;
 
   console.log(productPriceCents);
   console.log(shippingPriceCents);

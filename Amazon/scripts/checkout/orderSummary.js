@@ -1,7 +1,7 @@
 import {cart, removeFromCart, updateQuantity, updateDeliveyOption} from '../../data/cart.js';
 import {products, getProduct} from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js';
-import { deliveryOptions } from '../../data/deliveryOptions.js';
+import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 
@@ -25,13 +25,7 @@ function generateOrderSummary() {
 
         // Updating delivery date according to radio buttons
         let cartDeliveryId = cartItem.deliveryId;
-        let deliveryOption;
-
-        deliveryOptions.forEach((delOption) => {
-          if(delOption.deliveryId === cartDeliveryId) { // Getting delivery info same as cart's delivery id
-            deliveryOption = delOption;
-          }
-        });
+        let deliveryOption = getDeliveryOption(cartDeliveryId);
         // Getting and Turning date in good format
         const today = dayjs();
         const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');

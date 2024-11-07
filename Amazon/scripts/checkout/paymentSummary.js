@@ -30,7 +30,7 @@ export function renderPaymentOrder() {
     </div>
 
     <div class="payment-summary-row">
-      <div>Items (3):</div>
+      <div>Items (${updateCheckoutCount()}):</div>
       <div class="payment-summary-money">$${formatCurrency(productPriceCents)}</div>
     </div>
 
@@ -61,4 +61,15 @@ export function renderPaymentOrder() {
 
   document.querySelector('.js-payment-summary')
     .innerHTML = paymentSummaryHTML;
+}
+
+
+function updateCheckoutCount() {
+  let cartQuantity = 0;
+
+    cart.forEach((item) => {
+        cartQuantity += item.quantity;
+    });
+  
+  return cartQuantity;
 }

@@ -168,9 +168,9 @@ function makeUseDeleteLink() {
         updateCheckoutCount();
         
         // Removes html of removed item 
-        let removableContainder = document.querySelector(`.js-cart-item-container-${productId}`);
-        removableContainder.remove();
-
+        // let removableContainder = document.querySelector(`.js-cart-item-container-${productId}`);
+        // removableContainder.remove();
+        renderSummaryOrder();
         renderPaymentOrder();
       });
     });

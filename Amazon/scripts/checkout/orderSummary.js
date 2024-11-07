@@ -1,17 +1,8 @@
 import {cart, removeFromCart, updateQuantity, updateDeliveyOption} from '../../data/cart.js';
-import {products} from '../../data/products.js';
+import {products, getProduct} from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js';
 import { deliveryOptions } from '../../data/deliveryOptions.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
-
-renderSummaryOrder();
-
-generateOrderSummary();
-updateCheckoutCount();
-makeUseDeleteLink();
-makeUseUpdateLink();
-makeUseSaveLink();
-updateDeliveyId();
 
 
 export function renderSummaryOrder() {
@@ -30,13 +21,7 @@ function generateOrderSummary() {
 
         let productId = cartItem.productId;
 
-        let matchingItem;
-        // Accessing all info. from products arr of an item using cart arr
-        products.forEach((product) => {
-            if(product.id === productId) {
-                matchingItem = product;
-            }
-        });
+        let matchingItem = getProduct(productId);
 
         // Updating delivery date according to radio buttons
         let cartDeliveryId = cartItem.deliveryId;

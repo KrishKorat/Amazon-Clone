@@ -26,11 +26,25 @@ export function getDeliveryOption(cartDeliveryId) {
     return deliveryOption || deliveryOptions[0];
 }
 
+
 export function calculateDeliveryDate(deliveryOption) {
 
     // Getting and Turning date in good format
-    const today = dayjs();
-    const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
+    let remainingDays = deliveryOption.deliveryDays;
+    let deliveryDate = dayjs();
+
+    while(remainingDays > 0) {
+        deliveryDate = deliveryDate.add(1, 'days')
+
+        if(!isWeekend(deliveryDate)) {
+            remainingDays--;
+        }
+    }
     
     return deliveryDate.format('dddd, MMMM D');
 }
+
+function isWeekend(date) {
+    const dayOfWeek = date.format('dddd');
+    return dayOfWeek === 'Saturday' || dayOfWeek === 'Sunday';
+  }

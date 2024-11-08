@@ -1,10 +1,10 @@
 function Cart() {
   const cart = {
 
-    cart: undefined,
+    cartItems: undefined,
 
     loadLocalStorage() {
-      cart = JSON.parse(localStorage.getItem('cart')) || [
+      cart.cartItems = JSON.parse(localStorage.getItem('cart')) || [
         {
             productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
             quantity: 2,
@@ -25,7 +25,7 @@ function Cart() {
     productAddToCart(productId, selectVal) { // Check if there is matching value, yes then adds to that
   
       let matchingItem;
-      cart.forEach((item) => {   // Loops through cart array to check
+      this.cartItems.forEach((item) => {   // Loops through cart array to check
           if(productId === item.productId) {
               matchingItem = item; // item location is saved into matchingItem
           }
@@ -35,50 +35,50 @@ function Cart() {
           matchingItem.quantity += selectVal;
       } else {
           // Traditionaly adds item like this when they appear first time
-          cart.push({
+          this.cartItems.push({
               productId: productId,
               quantity: selectVal,
               deliveryId: '1' // By default shipping will be free
           });
       }
   
-      saveStorage();
+      this.saveStorage();
     },
 
     
     removeFromCart(productId) { // Executes when delete link is clicked in checkout page
       let newCart = [];
 
-      cart.forEach((cartItem) => {
+      this.cartItems.forEach((cartItem) => {
 
           if(cartItem.productId !== productId) {
               newCart.push(cartItem);
           }
       });
 
-      cart = newCart;
+      this.cartItems = newCart;
 
-      saveStorage();
+      this.saveStorage();
     },
 
     
     updateQuantity(productId, newQuantity) { // executes when we change quantity via update link in checkout page
     
-      cart.forEach((cartItem) => {
+      this.cartItems.forEach((cartItem) => {
           // Searches item to change
           if(cartItem.productId === productId) {
               cartItem.quantity = newQuantity; // Changes to new quantity
           }
       });
 
-      saveStorage();
+      this.saveStorage();
     },
 
     
     updateDeliveyOption(productId, deliveryId) { // Updates delivery id in Cart when click other radio buttons
     
       let matchingItem;
-      cart.forEach((item) => {  
+      this.cartItems.forEach((item) => {  
           if(productId === item.productId) {
               matchingItem = item; 
           }
@@ -86,7 +86,7 @@ function Cart() {
 
       matchingItem.deliveryId = deliveryId;
 
-      saveStorage();
+      this.saveStorage();
     }
   }
 }

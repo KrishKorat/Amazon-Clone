@@ -33,7 +33,7 @@ export function productAddToCart(productId, selectVal) {
         cart.push({
             productId: productId,
             quantity: selectVal,
-            deliveryId: 1 // By default shipping will be free
+            deliveryId: '1' // By default shipping will be free
         });
     }
 

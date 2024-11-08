@@ -10,8 +10,7 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 export function renderSummaryOrder() {
   generateOrderSummary();
-  // updateCheckoutCount();
-  renderCheckoutCount();
+  renderCheckoutCount(); // To refresh the checkout count in header
   makeUseDeleteLink();
   makeUseUpdateLink();
   makeUseSaveLink();
@@ -113,8 +112,8 @@ function deliveryOptionsHTML(matchingItem, cartItem) {
         </div>
       </div>
     `
-
   });
+  
   return html;
 }
 
@@ -138,20 +137,6 @@ function updateDeliveyId() {
 }
 
 
-
-// Updates checkout count each time changes happens 
-// function updateCheckoutCount() {
-//   let cartQuantity = 0;
-
-//     cart.forEach((item) => {
-//         cartQuantity += item.quantity;
-//     });
-//     document.querySelector('.js-item-count')
-//         .innerHTML = `${cartQuantity} items`;
-// }
-
-
-
 // Makes delete link useful in checkout page
 function makeUseDeleteLink() {
   document.querySelectorAll('.js-delete-link')
@@ -163,8 +148,6 @@ function makeUseDeleteLink() {
 
         // Removes item from the cart (only as data)
         removeFromCart(productId);
-
-        // updateCheckoutCount();
         
         // Removes html of removed item 
         // let removableContainder = document.querySelector(`.js-cart-item-container-${productId}`);

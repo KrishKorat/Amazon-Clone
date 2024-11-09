@@ -3,6 +3,11 @@ class Cart {
   cartItems;
   localStorageKey;
 
+  constructor(localStorageKey) {
+    this.localStorageKey = localStorageKey;
+    this.loadLocalStorage();
+  }
+
   loadLocalStorage() {
     this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)) || [
       {
@@ -92,14 +97,12 @@ class Cart {
 
 
 
-const cart = new Cart();
-const businessCart = new Cart();
+const cart = new Cart('cart-oop');
+const businessCart = new Cart('cart-business');
 
-cart.localStorageKey = 'cart-oop';
-businessCart.localStorageKey = 'cart-business';
- 
-cart.loadLocalStorage();
-businessCart.loadLocalStorage();
+// Without constructor...
+// businessCart.localStorageKey = 'cart-business';
+// businessCart.loadLocalStorage();
 
 console.log(cart);
 console.log(businessCart);

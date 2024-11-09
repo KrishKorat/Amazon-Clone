@@ -11,6 +11,22 @@ export function getProduct(productId) {
   return matchingItem;
 }
 
+class Product {
+  id;
+  image;
+  name;
+  rating;
+  priceCents;
+
+  constructor(productDetail) {
+    this.id = productDetail.id;
+    this.image = productDetail.image;
+    this.name = productDetail.name;
+    this.rating = productDetail.rating;
+    this.priceCents = productDetail.priceCents;
+  }
+}
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -670,4 +686,8 @@ export const products = [
       "mens"
     ]
   }
-];
+].map((productDetail) => {
+  return new Product(productDetail);
+});
+
+console.log(products);

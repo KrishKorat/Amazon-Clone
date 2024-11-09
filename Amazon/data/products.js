@@ -1,3 +1,6 @@
+import { formatCurrency } from "../scripts/utils/money.js";
+
+
 export function getProduct(productId) {
   let matchingItem;
         
@@ -24,6 +27,14 @@ class Product {
     this.name = productDetail.name;
     this.rating = productDetail.rating;
     this.priceCents = productDetail.priceCents;
+  }
+
+  getUrl() {
+    return `images/ratings/rating-${this.rating.stars * 10}.png`;
+  }
+
+  getPrice() {
+    return `$${formatCurrency(this.priceCents)}`;
   }
 }
 
@@ -689,5 +700,3 @@ export const products = [
 ].map((productDetail) => {
   return new Product(productDetail);
 });
-
-console.log(products);

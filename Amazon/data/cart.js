@@ -85,7 +85,7 @@ export function updateDeliveyOption(productId, deliveryId) {
 }
 
 
-export function loadAllProducts(fun) {
+export function loadCart(fun) {
 
     const xhr = new XMLHttpRequest();
   

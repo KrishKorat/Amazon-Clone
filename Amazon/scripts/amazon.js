@@ -1,11 +1,15 @@
 import {cart, productAddToCart} from '../data/cart.js';
-import {products} from '../data/products.js';
-import {formatCurrency} from './utils/money.js';
+import {products, loadAllProducts} from '../data/products.js';
+// import {formatCurrency} from './utils/money.js';
 
+// loadAllProducts(amazonJsFunc);
 
-productGridGenerator();
-addToCartInteractive(); // Contains all the things when we click 'add to cart' button
-updateCartQuantity(); // Updates count of cart in the right corner
+function amazonJsFunc() {
+    productGridGenerator();
+    addToCartInteractive(); // Contains all the things when we click 'add to cart' button
+    updateCartQuantity(); // Updates count of cart in the right corner
+}
+
 
 
 function productGridGenerator() {

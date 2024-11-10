@@ -2,7 +2,7 @@ import {cart, productAddToCart} from '../data/cart.js';
 import {products, loadAllProducts} from '../data/products.js';
 // import {formatCurrency} from './utils/money.js';
 
-// loadAllProducts(amazonJsFunc);
+loadAllProducts(amazonJsFunc);
 
 function amazonJsFunc() {
     productGridGenerator();

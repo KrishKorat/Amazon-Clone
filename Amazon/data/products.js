@@ -131,6 +131,10 @@ export function loadProducts(fun) {
     fun();
   });
 
+  xhr.addEventListener('error', (error) => {
+    console.log('Unexpected error! please try again. ' + error);
+  });
+
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
 }

@@ -6,7 +6,6 @@ import { addOrders } from '../../data/orders.js';
 
 
 
-
 export function renderPaymentOrder() {
 
   let productPriceCents = 0;

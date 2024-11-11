@@ -90,27 +90,35 @@ class Appliance extends Product {
 export let products = [];
 
 export function loadProductsFetch() {
+
+  // Using fetch, by default it's in 'GET' mode
   const promise = fetch(
     'https://supersimplebackend.dev/products'
-  ).then((response) => {
-    return response.json();
-  }).then((fetchedData) => {
-    products = fetchedData.map((productDetail) => {
 
+  ).then((response) => { // response = products arr from backend
+    // Converting it as normal arr from json string
+    return response.json();
+
+  }).then((response) => { // response = correct-formated products arr
+
+    // Initializing to products
+    products = response.map((productDetail) => {
+
+      // Assigning classes
       if(productDetail.type === 'clothing') {
         return new Clothing(productDetail);
       }
       if(productDetail.type === 'appliance') {
         return new Appliance(productDetail);
       }
-    
       return new Product(productDetail);
     });
+
   }).catch((error) => {
     console.log('Unexpected error! please try again. ' + error);
   });
 
-  return promise;
+  return promise; // to load info. from backend
 }
 
 

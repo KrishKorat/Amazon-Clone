@@ -113,14 +113,18 @@ export function loadProductsFetch() {
   return promise;
 }
 
+
+// Loading products arr from backend
 export function loadProducts(fun) {
 
   const xhr = new XMLHttpRequest();
 
+  // Holds all functions to execute until products are loaded
   xhr.addEventListener('load', () => {
 
     products = JSON.parse(xhr.response).map((productDetail) => {
 
+      // Assigning diffrent classes according to products
       if(productDetail.type === 'clothing') {
         return new Clothing(productDetail);
       }
@@ -128,9 +132,10 @@ export function loadProducts(fun) {
         return new Appliance(productDetail);
       }
     
-      return new Product(productDetail);
+      return new Product(productDetail); // By default 
     });
 
+    // Here, executing functions
     fun();
   });
 
@@ -138,10 +143,13 @@ export function loadProducts(fun) {
     console.log('Unexpected error! please try again. ' + error);
   });
 
+  // Fetching products arr from backend 
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
 }
 
+
+// Saved products arr
 /*
 export const products = [
   {

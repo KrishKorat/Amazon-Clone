@@ -14,7 +14,7 @@ export function getProduct(cartProductId) {
   return matchingItem;
 }
 
-
+// Creating a class to enhance every product in products arr
 class Product {
   id;
   image;
@@ -22,6 +22,7 @@ class Product {
   rating;
   priceCents;
 
+  // Assigning details 
   constructor(productDetail) {
     this.id = productDetail.id;
     this.image = productDetail.image;
@@ -43,11 +44,12 @@ class Product {
   }
 }
 
-
+// Those product gets who has type:clothing
 class Clothing extends Product {
   sizeChartLink;
 
   constructor(productDetail) {
+    // Calls parent constructor
     super(productDetail);
     this.sizeChartLink = productDetail.sizeChartLink;
   }
@@ -61,6 +63,7 @@ class Clothing extends Product {
   }
 }
 
+// Those product gets who has type:appliance
 class Appliance extends Product {
   instructionsLink;
   warrantyLink;

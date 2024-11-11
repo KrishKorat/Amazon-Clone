@@ -92,7 +92,8 @@ export function renderPaymentOrder() {
         console.log('Unexpected error! please try again. ' + error);
       }
 
-      
+      // Sends us to orders page
+      window.location.href = 'orders.html';
     });
 }
 

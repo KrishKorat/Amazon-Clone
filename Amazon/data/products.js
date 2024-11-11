@@ -1,12 +1,12 @@
 import { formatCurrency } from "../scripts/utils/money.js";
 
-
-export function getProduct(productId) {
+// Extracts entire product info.
+export function getProduct(cartProductId) {
   let matchingItem;
         
   // Accessing all info. from products arr of an item using cart arr
   products.forEach((product) => {
-    if(product.id === productId) {
+    if(product.id === cartProductId) {
         matchingItem = product;
     }
   });

@@ -11,9 +11,10 @@ export function renderPaymentOrder() {
   let productPriceCents = 0;
   let shippingPriceCents = 0;
   
+  // Extracting everything of ordered product one at a time
   cart.forEach((cartItem) => {
         
-    // Store product in cart one at a time
+    // Store product from cart one at a time
     const product = getProduct(cartItem.productId);
     // Store that item's delivery details
     let deliveryOption = getDeliveryOption(cartItem.deliveryId);
@@ -53,7 +54,7 @@ export function renderPaymentOrder() {
 
     <div class="payment-summary-row total-row">
       <div>Order total:</div>
-      <div class="payment-summary-money">$${formatCurrency(totalBeforeTaxCents)}</div>
+      <div class="payment-summary-money">$${formatCurrency(totalCents)}</div>
     </div>
 
     <button class="place-order-button button-primary
@@ -65,10 +66,13 @@ export function renderPaymentOrder() {
   document.querySelector('.js-payment-summary')
     .innerHTML = paymentSummaryHTML;
 
+  
+  // Making place-order-button interactive
   document.querySelector('.js-place-order')
     .addEventListener('click', async () => {
 
       try {
+        // Giving details of order to backend
         const response = await fetch('https://supersimplebackend.dev/orders', {
 
           method: 'POST',
@@ -80,6 +84,7 @@ export function renderPaymentOrder() {
           })
         });
   
+        // Storing detail of order in local storage
         const order = await response.json();
         addOrders(order);
 
@@ -91,6 +96,7 @@ export function renderPaymentOrder() {
     });
 }
 
+// Updates checkout count in payment summary
 function updateCheckoutCountInPayment() {
   let cartQuantity = 0;
 

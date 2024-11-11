@@ -1,9 +1,11 @@
 import {cart, productAddToCart} from '../data/cart.js';
 import {products, loadProducts} from '../data/products.js';
-// import {formatCurrency} from './utils/money.js';
 
+
+// Runs code after products arr has fetched from backend
 loadProducts(amazonJsFunc);
 
+// Bundling functions to insert in loadProducts
 function amazonJsFunc() {
     productGridGenerator();
     addToCartInteractive(); // Contains all the things when we click 'add to cart' button
@@ -11,7 +13,7 @@ function amazonJsFunc() {
 }
 
 
-
+// Generate product grid
 function productGridGenerator() {
     let productGridHTML = '';
 

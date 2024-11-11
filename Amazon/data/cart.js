@@ -84,7 +84,7 @@ export function updateDeliveyOption(productId, deliveryId) {
     saveStorage();
 }
 
-
+// Only dummy function to practise loading products and cartItems at same time in checkout.js
 export function loadCart(fun) {
 
     const xhr = new XMLHttpRequest();

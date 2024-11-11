@@ -67,19 +67,26 @@ export function renderPaymentOrder() {
   document.querySelector('.js-place-order')
     .addEventListener('click', async () => {
 
-      const response = await fetch('https://supersimplebackend.dev/orders', {
+      try {
+        const response = await fetch('https://supersimplebackend.dev/orders', {
 
-        method: 'POST',
-        headers: {
-          'Content-Type' : 'application/json'
-        },
-        body: JSON.stringify({
-          cart: cart
-        })
-      });
+          method: 'POST',
+          headers: {
+            'Content-Type' : 'application/json'
+          },
+          body: JSON.stringify({
+            cart: cart
+          })
+        });
+  
+        const order = await response.json();
+        addOrders(order);
 
-      const order = await response.json();
-      addOrders(order);
+      } catch(error) {
+        console.log('Unexpected error! please try again. ' + error);
+      }
+
+      
     });
 }
 

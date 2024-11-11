@@ -4,13 +4,32 @@ import { renderCheckoutCount } from "./checkout/checkoutHeader.js";
 import { loadProducts, loadProductsFetch } from "../data/products.js";
 import { loadCart } from "../data/cart.js";
 
-Promise.all([
-  /*
-  new Promise((resolve) => {
-    loadProducts(() => {
+
+async function loadpages() {
+
+  await loadProductsFetch();
+
+  await new Promise((resolve) => {
+    loadCart(() => {
       resolve();
     });
-  })*/loadProductsFetch(),
+  })
+
+  renderSummaryOrder();
+  renderPaymentOrder();
+  renderCheckoutCount();
+}
+loadpages();
+
+/*
+Promise.all([
+  
+  // new Promise((resolve) => {
+  //   loadProducts(() => {
+  //     resolve();
+  //   });
+  // })
+  loadProductsFetch(),
   new Promise((resolve) => {
     loadCart(() => {
       resolve();
@@ -21,6 +40,7 @@ Promise.all([
   renderPaymentOrder();
   renderCheckoutCount();
 });
+*/
 
 
 /*

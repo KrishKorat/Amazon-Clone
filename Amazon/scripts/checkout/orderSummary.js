@@ -5,7 +5,6 @@ import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.j
 import { renderPaymentOrder } from './paymentSummary.js';
 import { renderCheckoutCount } from './checkoutHeader.js';
 import { calculateDeliveryDate } from '../../data/deliveryOptions.js';
-// import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 
 export function renderSummaryOrder() {
@@ -131,7 +130,7 @@ function updateDeliveyId() {
         updateDeliveyOption(productId, deliveryId); // in Cart.js
         
         renderSummaryOrder(); // To update delivery date without refreshing
-        renderPaymentOrder();
+        renderPaymentOrder(); // To update payment dashboard without refreshing
       });
     });
 }
@@ -152,6 +151,7 @@ function makeUseDeleteLink() {
         // Removes html of removed item 
         // let removableContainder = document.querySelector(`.js-cart-item-container-${productId}`);
         // removableContainder.remove();
+        
         renderSummaryOrder();
         renderPaymentOrder();
       });

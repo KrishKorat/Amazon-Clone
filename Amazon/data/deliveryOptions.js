@@ -14,6 +14,7 @@ export let deliveryOptions = [{
     deliveryCost: 999
 }];
 
+// Extracts singular delivery detail by cart's delivery id
 export function getDeliveryOption(cartDeliveryId) {
     let deliveryOption;
 
@@ -26,7 +27,7 @@ export function getDeliveryOption(cartDeliveryId) {
     return deliveryOption || deliveryOptions[0];
 }
 
-
+// Skips the weekend in delivery date 
 export function calculateDeliveryDate(deliveryOption) {
 
     // Getting and Turning date in good format
@@ -36,6 +37,7 @@ export function calculateDeliveryDate(deliveryOption) {
     while(remainingDays > 0) {
         deliveryDate = deliveryDate.add(1, 'days')
 
+        // If satureday then returns true => true + false = false, means no decrement
         if(!isWeekend(deliveryDate)) {
             remainingDays--;
         }

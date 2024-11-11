@@ -5,7 +5,7 @@ import { formatCurrency } from '../utils/money.js';
 import { addOrders } from '../../data/orders.js';
 
 
-
+// Rendering entire payment section
 export function renderPaymentOrder() {
 
   let productPriceCents = 0;
@@ -13,7 +13,9 @@ export function renderPaymentOrder() {
   
   cart.forEach((cartItem) => {
         
+    // Store product in cart one at a time
     const product = getProduct(cartItem.productId);
+    // Store that item's delivery details
     let deliveryOption = getDeliveryOption(cartItem.deliveryId);
 
     productPriceCents += product.priceCents * cartItem.quantity;

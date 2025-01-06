@@ -1,1 +1,1 @@
-This repository contains all the frontend projects.
+Ecommerce Webside inspired by Amazon.
